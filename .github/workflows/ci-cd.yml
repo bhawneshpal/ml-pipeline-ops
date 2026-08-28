@@ -35,6 +35,10 @@ jobs:
         run: |
           python model/validate_model.py
 
+      - name: Deploy model
+        run: |
+          python model/deploy.py
+
       - name: Run tests
         run: |
           pytest tests/ -v
