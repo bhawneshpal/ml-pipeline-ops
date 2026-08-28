@@ -1,10 +1,11 @@
-import joblib
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timezone
+
+import joblib
 from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
 
 # Load dataset
 data = load_iris()
@@ -46,7 +47,7 @@ metadata["versions"][f"v{next_version}"] = {
     "file": model_filename,
     "train_accuracy": train_accuracy,
     "test_accuracy": test_accuracy,
-    "trained_at": datetime.now().isoformat()
+    "trained_at": datetime.now(timezone.utc).isoformat()
 }
 
 with open(metadata_path, "w") as f:

@@ -1,5 +1,7 @@
 import json
+
 import joblib
+
 
 def test_model_file_exists_and_loads():
     with open("model/metadata.json", "r") as f:

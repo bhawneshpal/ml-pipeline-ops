@@ -1,6 +1,7 @@
 import json
-import joblib
 import logging
+
+import joblib
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, field_validator
 
@@ -64,6 +65,6 @@ def predict(request: PredictRequest):
             "prediction": int(prediction),
             "model_version": active_version
         }
-    except Exception as e:
-        logger.error(f"Prediction failed: {str(e)}")
-        raise HTTPException(status_code=500, detail="Prediction failed")
+    except (ValueError, RuntimeError) as e:
+        logger.error(f"Prediction failed: {e!s}")
+    raise HTTPException(status_code=500, detail="Prediction failed")

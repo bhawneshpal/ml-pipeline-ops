@@ -1,5 +1,4 @@
 import json
-import sys
 
 metadata_path = "model/metadata.json"
 
